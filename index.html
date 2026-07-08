@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sappy | Thumbnails</title>
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/sDQNQFPP/5b08ffc4cecf978a56374a612aba09d2.png">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Plus+Jakarta+Sans:wght@700;800&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'SF Pro Rounded Black';
+            src: url('https://fonts.cdnfonts.com/s/73139/SFProRounded-Black.woff') format('woff');
+            font-weight: 900;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'VNI 08 Springtime2 BoldOblique';
+            src: url('https://cdn.jsdelivr.net/gh/denjithumbnail/denjistore@main/VNIA6BoldOblique.woff2') format('woff2'),
+                url('https://cdn.jsdelivr.net/gh/denjithumbnail/denjistore@main/VNIA6BoldOblique.woff') format('woff');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        body { 
+            background-color: #ffffff; 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .sf-rounded-black {
+            font-family: 'SF Pro Rounded Black', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 900;
+        }
+
+        .bottom-avatar-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            gap: 30px;
+        }
+
+        .bottom-avatar-header-block {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            width: 100%;
+        }
+
+        .bottom-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #ffffff;
+            flex-shrink: 0;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28), 0 4px 12px rgba(0, 0, 0, 0.18);
+        }
+        .bottom-avatar-text-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        
+        .bottom-avatar-name {
+            font-family: 'SF Pro Rounded Black', sans-serif;
+            font-weight: 900;
+            font-size: 64px;
+            color: #000000;
+            margin: 0;
+            letter-spacing: -1px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .bottom-avatar-subtext {
+            font-family: 'SF Pro Rounded Black', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #000000;
+            margin: 0;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+        }
+
+        /* KHUNG THƯ CỐ ĐỊNH THEO TỶ LỆ CỦA BANNER PHÍA TRÊN */
+        .bottom-letter-box {
+            background-color: #fcfcfc;
+            border-radius: 24px;
+            padding: 28px 45px 85px 45px; 
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.16), 0 5px 15px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 39px,
+                rgba(0, 0, 0, 0.15) 39px,
+                rgba(0, 0, 0, 0.15) 40px
+            );
+            background-position: 0 23px; 
+        }
+
+        .bottom-avatar-bio {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bottom-avatar-bio p {
+            font-family: 'Reenie Beanie', cursive;
+            font-size: 38px; 
+            font-weight: normal;
+            color: #1a1a1a; 
+            line-height: 40px; 
+            margin: 0 0 40px 0;
+        }
+
+        .bottom-avatar-bio p:last-child {
+            margin-bottom: 40px;
+        }
+
+        .bottom-letter-signature {
+            font-family: 'VNI 08 Springtime2 BoldOblique', cursive;
+            font-weight: normal;
+            font-size: 56px; 
+            color: #0d0d0d;
+            text-align: right;
+            margin: 0;
+            align-self: flex-end;
+            padding-right: 25px;
+            margin-bottom: 0px; 
+            position: relative;
+            z-index: 2;
+            line-height: 40px;
+            transform: translateY(-16px); 
+        }
+
+        /* ĐỒNG BỘ CHO MOBILE - TOÀN KHỐI KHỚP NHAU */
+        @media (max-width: 768px) {
+            .bottom-avatar-container {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 20px !important;
+                width: 100% !important;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+                box-sizing: border-box !important;
+            }
+            
+            .bottom-avatar {
+                width: 100px !important;
+                height: 100px !important;
+                border: 5px solid #ffffff !important;
+            }
+            .bottom-avatar-name {
+                font-size: 48px !important; 
+            }
+            .bottom-avatar-name img {
+                height: 26px !important;
+                margin-left: 6px !important;
+            }
+            
+            /* MOBILE KHỚP RỘNG KHUÔN 100% NHƯ BANNER TRÊN */
+            .bottom-letter-box {
+                width: 100% !important;
+                padding: 20px 20px 65px 20px !important; 
+                background-image: repeating-linear-gradient(
+                    transparent, 
+                    transparent 34px, 
+                    rgba(0, 0, 0, 0.15) 34px, 
+                    rgba(0, 0, 0, 0.15) 35px
+                ) !important;
+                background-position: 0 16px !important; 
+            }
+
+            .bottom-avatar-bio p {
+                font-size: 32px !important; 
+                line-height: 35px !important;
+                margin: 0 0 35px 0 !important;
+            }
+            
+            .bottom-avatar-bio p:last-child {
+                margin-bottom: 35px !important;
+            }
+
+            .bottom-letter-signature {
+                line-height: 35px !important;
+                font-size: 42px !important;
+                margin-bottom: 0px !important;
+                transform: translateY(-14px) !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen w-screen flex flex-col justify-between items-center m-0 overflow-x-hidden pt-8 pb-8 bg-white">
+
+    <div class="w-full flex justify-center">
+        <div class="w-[98vw] max-w-[1850px] bg-gradient-to-r from-[#eda500] to-[#ffb200] font-['SF_Pro_Rounded_Black'] font-black text-xl tracking-wide py-4.5 uppercase overflow-hidden whitespace-nowrap rounded-2xl shadow-lg select-none">
+            <div class="marquee-track" id="marqueeTrack">
+                <div class="marquee-content flex items-center gap-10 pr-10 shrink-0 text-white" style="text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.25);" id="marquee">
+                    <span>• SAPPY</span>
+                    <span>• THUMBNAIL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-auto py-6" style="width: 97%; max-width: 1600px; box-sizing: border-box;">
+        <section id="profile-section" class="section-container">
+            <div class="bottom-avatar-container">
+                <div class="bottom-avatar-header-block">
+                    <img src="https://i.postimg.cc/WbXQrmxR/image.png" class="bottom-avatar" alt="Avatar">
+                    <div class="bottom-avatar-text-group">
+                        <h3 class="bottom-avatar-name">sappy<img src="https://i.postimg.cc/BbVvTQQ3/Verified-Tiktok-Emoji-Copy-and-Paste.png" alt="TikTok Verified" style="height: 32px; width: auto; margin-left: 10px; flex-shrink: 0; transform: translateY(3px);"></h3>
+                        <p class="bottom-avatar-subtext">sapp1e_.gfx</p>
+                    </div>
+                </div>
+                
+                <div class="bottom-letter-box">
+                    <div class="bottom-avatar-bio">
+                        <p>Dear Customer!</p>
+
+                        <p>Hi! I'm Sappy, a freelance YouTube Thumbnail Designer.</p>
+                        
+                        <p>I specialize in creating eye-catching thumbnails that help videos stand out and attract more viewers. I believe every project is an opportunity to improve, so I constantly learn and refine my skills with each thumbnail I create.</p>
+                        
+                        <p>My goal is simple: to deliver high-quality work that you're happy with. I value clear communication, listen to feedback, and make revisions to ensure the final result matches your vision.</p>
+                        
+                        <p>I look forward to working with you!</p>
+                    </div>
+                    
+                    <h5 class="bottom-letter-signature">Sappy</h5>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="w-[98vw] max-w-[1850px] flex flex-col md:flex-row justify-between items-center md:items-end gap-6 md:gap-0 select-none text-center md:text-left" style="font-family: 'SF Pro Rounded Black', sans-serif;">
+        <div class="flex flex-col items-center md:items-start gap-1">
+            <p class="site-credit text-sm font-bold text-[#aaaaaa] tracking-wide" style="display: flex; align-items: center; gap: 6px; margin: 0;">
+                <img src="https://i.postimg.cc/QxXjY7KY/pin-location-icon-sign-symbol-design-free-png.png" alt="Location" style="height: 14px; width: auto; vertical-align: middle; filter: grayscale(1) brightness(0.65); opacity: 0.65;">Vietnam
+            </p>
+            <p class="text-sm font-bold text-[#aaaaaa] tracking-wide" style="margin: 0;">&copy; Sappy - Vietnamese Minecraft Designer</p>
+        </div>
+
+        <div class="flex flex-col items-center md:items-end gap-4">
+            <div class="flex items-center gap-[18px]">
+                <a href="https://discordapp.com/users/865602684999434250" target="_blank" class="inline-block transition-transform duration-300 hover:-translate-y-1.5 group">
+                    <img src="https://i.postimg.cc/kXGthQ55/discord.png" alt="Discord" class="w-[50px] h-[50px] object-contain grayscale brightness-[0.5] opacity-40 group-hover:grayscale-0 group-hover:brightness-100 group-hover:opacity-100 transition-all duration-300">
+                </a>
+                <a href="https://discord.gg/fZkWkShtp6" target="_blank" class="inline-block transition-transform duration-300 hover:-translate-y-1.5 group">
+                    <img src="https://i.postimg.cc/Fz8CVsLC/discord.png" alt="Discord" class="w-[50px] h-[50px] object-contain grayscale brightness-[0.5] opacity-40 group-hover:grayscale-0 group-hover:brightness-100 group-hover:opacity-100 transition-all duration-300">
+                </a>
+            </div>
+            <p class="text-sm font-bold text-[#aaaaaa] tracking-wide" style="margin: 0;">&copy; Developer: Denji</p>
+        </div>
+    </footer>
+
+    <script>
+        const marquee = document.getElementById("marquee");
+        const marqueeTrack = document.getElementById("marqueeTrack");
+
+        while (marqueeTrack.scrollWidth < window.innerWidth * 3) {
+            marqueeTrack.innerHTML += marquee.outerHTML;
+        }
+    </script>
+</body>
+</html>
