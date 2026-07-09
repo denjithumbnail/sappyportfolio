@@ -308,8 +308,30 @@
                     </div>
                 </div>
 
+                <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mt-4 px-2 md:px-0">
+                    <div class="w-full aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] bg-gray-100 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onclick="openLightbox('https://i.postimg.cc/9F3fzCVz/King-TEC.png')">
+                        <img src="https://i.postimg.cc/9F3fzCVz/King-TEC.png" alt="King TEC" class="w-full h-full object-cover" draggable="false">
+                    </div>
+                    <div class="w-full aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] bg-gray-100 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onclick="openLightbox('https://i.postimg.cc/V6pkqcC7/practise.png')">
+                        <img src="https://i.postimg.cc/V6pkqcC7/practise.png" alt="Practise" class="w-full h-full object-cover" draggable="false">
+                    </div>
+                    <div class="w-full aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] bg-gray-100 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onclick="openLightbox('https://i.postimg.cc/x138W7WB/pepe.png')">
+                        <img src="https://i.postimg.cc/x138W7WB/pepe.png" alt="Pepe" class="w-full h-full object-cover" draggable="false">
+                    </div>
+                </div>
+
             </div>
         </section>
+    </div>
+
+    <div id="lightboxOverlay" class="fixed inset-0 bg-black/85 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative w-[98vw] max-w-[1375px] aspect-[16/9] flex items-center justify-center">
+            <img id="lightboxImage" src="" alt="Showcase Expanded" class="w-full h-full object-contain rounded-xl md:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)]" draggable="false">
+            
+            <button class="fixed top-4 right-4 text-[#aaaaaa] hover:text-[#ffb200] active:text-[#ffb200] transition-colors text-3xl md:text-4xl font-light cursor-pointer select-none leading-none p-3 z-55" onclick="closeLightbox()">
+                ✕
+            </button>
+        </div>
     </div>
 
     <footer class="w-[98vw] max-w-[1850px] flex flex-col md:flex-row justify-between items-center md:items-end gap-6 md:gap-0 select-none text-center md:text-left" style="font-family: 'SF Pro Rounded Black', sans-serif;">
@@ -341,11 +363,34 @@
             marqueeTrack.innerHTML += marquee.outerHTML;
         }
 
+        // JS điều khiển Lightbox
+        const overlay = document.getElementById('lightboxOverlay');
+        const lightboxImg = document.getElementById('lightboxImage');
+
+        function openLightbox(imgSrc) {
+            lightboxImg.src = imgSrc;
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.classList.add('opacity-100', 'pointer-events-auto');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeLightbox() {
+            overlay.classList.remove('opacity-100', 'pointer-events-auto');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = ''; 
+            setTimeout(() => { lightboxImg.src = ''; }, 300); 
+        }
+
+        // Chặn menu chuột phải bảo mật
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
+        // Chặn phím tắt F12 / Inspect và phím tắt đóng ảnh bằng Escape
         document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
             if (
                 e.key === 'F12' || 
                 (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
