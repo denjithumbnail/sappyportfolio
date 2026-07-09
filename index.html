@@ -33,11 +33,12 @@
             user-select: none;
         }
 
-        /* KHÓA ẢNH: Chặn click, chặn kéo thả bằng CSS */
+        /* KHÓA ẢNH: Đã bỏ pointer-events để điện thoại nhận diện lượt bấm và chạy hiệu ứng */
         img {
-            pointer-events: none;
             -webkit-user-drag: none;
             user-drag: none;
+            /* Chặn menu tải xuống khi nhấn giữ trên một số trình duyệt di động */
+            -webkit-touch-callout: none; 
         }
 
         .marquee-track {
@@ -295,12 +296,12 @@
             marqueeTrack.innerHTML += marquee.outerHTML;
         }
 
-        // CHẶN CHUỘT PHẢI (Chống lưu ảnh, kiểm tra phần tử)
+        // CHẶN CHUỘT PHẢI TRÊN MÁY TÍNH VÀ NHẤN GIỮ TRÊN ĐIỆN THOẠI (Chống lưu ảnh)
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
-        // CHẶN PHÍM TẮT (F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S)
+        // CHẶN CÁC PHÍM TẮT COPPY / SOI MÃ NGUỒN CƠ BẢN
         document.addEventListener('keydown', function(e) {
             if (
                 e.key === 'F12' || 
