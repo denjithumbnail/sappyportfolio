@@ -26,6 +26,18 @@
         body { 
             background-color: #ffffff; 
             font-family: 'Plus Jakarta Sans', sans-serif;
+            /* Chống bôi đen text toàn trang */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* KHÓA ẢNH: Chặn click, chặn kéo thả bằng CSS */
+        img {
+            pointer-events: none;
+            -webkit-user-drag: none;
+            user-drag: none;
         }
 
         .marquee-track {
@@ -228,9 +240,9 @@
         <section id="profile-section" class="section-container">
             <div class="bottom-avatar-container">
                 <div class="bottom-avatar-header-block">
-                    <img src="https://i.postimg.cc/WbXQrmxR/image.png" class="bottom-avatar" alt="Avatar">
+                    <img src="https://i.postimg.cc/WbXQrmxR/image.png" class="bottom-avatar" alt="Avatar" draggable="false">
                     <div class="bottom-avatar-text-group">
-                        <h3 class="bottom-avatar-name">sappy<img src="https://i.postimg.cc/BbVvTQQ3/Verified-Tiktok-Emoji-Copy-and-Paste.png" alt="TikTok Verified" style="height: 32px; width: auto; margin-left: 10px; flex-shrink: 0; transform: translateY(3px);"></h3>
+                        <h3 class="bottom-avatar-name">sappy<img src="https://i.postimg.cc/BbVvTQQ3/Verified-Tiktok-Emoji-Copy-and-Paste.png" alt="TikTok Verified" style="height: 32px; width: auto; margin-left: 10px; flex-shrink: 0; transform: translateY(3px);" draggable="false"></h3>
                         <p class="bottom-avatar-subtext">sapp1e_.gfx</p>
                     </div>
                 </div>
@@ -257,7 +269,7 @@
     <footer class="w-[98vw] max-w-[1850px] flex flex-col md:flex-row justify-between items-center md:items-end gap-6 md:gap-0 select-none text-center md:text-left" style="font-family: 'SF Pro Rounded Black', sans-serif;">
         <div class="flex flex-col items-center md:items-start gap-1">
             <p class="site-credit text-sm font-bold text-[#aaaaaa] tracking-wide" style="display: flex; align-items: center; gap: 6px; margin: 0;">
-                <img src="https://i.postimg.cc/QxXjY7KY/pin-location-icon-sign-symbol-design-free-png.png" alt="Location" style="height: 14px; width: auto; vertical-align: middle; filter: grayscale(1) brightness(0.65); opacity: 0.65;">Vietnam
+                <img src="https://i.postimg.cc/QxXjY7KY/pin-location-icon-sign-symbol-design-free-png.png" alt="Location" style="height: 14px; width: auto; vertical-align: middle; filter: grayscale(1) brightness(0.65); opacity: 0.65;" draggable="false">Vietnam
             </p>
             <p class="text-sm font-bold text-[#aaaaaa] tracking-wide" style="margin: 0;">&copy; Sappy - Vietnamese Minecraft Designer</p>
         </div>
@@ -265,10 +277,10 @@
         <div class="flex flex-col items-center md:items-end gap-4">
             <div class="flex items-center gap-[18px]">
                 <a href="https://discordapp.com/users/865602684999434250" target="_blank" class="inline-block transition-transform duration-300 hover:-translate-y-1.5 active:-translate-y-1.5 group">
-                    <img src="https://i.postimg.cc/kXGthQ55/discord.png" alt="Discord" class="w-[50px] h-[50px] object-contain grayscale brightness-[0.5] opacity-40 group-hover:grayscale-0 group-hover:brightness-100 group-hover:opacity-100 group-active:grayscale-0 group-active:brightness-100 group-active:opacity-100 transition-all duration-300">
+                    <img src="https://i.postimg.cc/kXGthQ55/discord.png" alt="Discord" class="w-[50px] h-[50px] object-contain grayscale brightness-[0.5] opacity-40 group-hover:grayscale-0 group-hover:brightness-100 group-hover:opacity-100 group-active:grayscale-0 group-active:brightness-100 group-active:opacity-100 transition-all duration-300" draggable="false">
                 </a>
                 <a href="https://discord.gg/fZkWkShtp6" target="_blank" class="inline-block transition-transform duration-300 hover:-translate-y-1.5 active:-translate-y-1.5 group">
-                    <img src="https://i.postimg.cc/Fz8CVsLC/discord.png" alt="Discord" class="w-[50px] h-[50px] object-contain grayscale brightness-[0.5] opacity-40 group-hover:grayscale-0 group-hover:brightness-100 group-hover:opacity-100 group-active:grayscale-0 group-active:brightness-100 group-active:opacity-100 transition-all duration-300">
+                    <img src="https://i.postimg.cc/Fz8CVsLC/discord.png" alt="Discord" class="w-[50px] h-[50px] object-contain grayscale brightness-[0.5] opacity-40 group-hover:grayscale-0 group-hover:brightness-100 group-hover:opacity-100 group-active:grayscale-0 group-active:brightness-100 group-active:opacity-100 transition-all duration-300" draggable="false">
                 </a>
             </div>
             <p class="text-sm font-bold text-[#aaaaaa] tracking-wide" style="margin: 0;">&copy; Developer: Denji</p>
@@ -282,6 +294,23 @@
         while (marqueeTrack.scrollWidth < window.innerWidth * 3) {
             marqueeTrack.innerHTML += marquee.outerHTML;
         }
+
+        // CHẶN CHUỘT PHẢI (Chống lưu ảnh, kiểm tra phần tử)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // CHẶN PHÍM TẮT (F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S)
+        document.addEventListener('keydown', function(e) {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+                (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S'))
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
     </script>
 </body>
 </html>
