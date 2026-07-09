@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sappy | Thumbnails</title>
-    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/sDQNQFPP/5b08ffc4cecf978a56374a612aba09d2.png">
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/0NjDkPGL/5b08ffc4cecf978a56374a612aba09d2.png">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Plus+Jakarta+Sans:wght@700;800&family=Reenie+Beanie&display=swap" rel="stylesheet">
     <style>
@@ -26,18 +26,27 @@
         body { 
             background-color: #ffffff; 
             font-family: 'Plus Jakarta Sans', sans-serif;
-            /* Chống bôi đen lựa chọn văn bản toàn trang */
+            /* Chống bôi đen text toàn trang */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
         }
 
-        /* KHÓA ẢNH: Chống kéo thả ảnh, chống nhấn giữ hiện menu tải xuống trên Mobile */
+        /* KHÓA ẢNH BẢO MẬT */
         img {
             -webkit-user-drag: none;
             user-drag: none;
-            -webkit-touch-callout: none;
+            -webkit-touch-callout: none; /* Chặn menu lưu ảnh khi nhấn giữ trên iOS/Android */
+        }
+
+        /* FIX HOÀN TOÀN TRẠNG THÁI HIỆN MÀU / NẨY LÊN TRÊN MOBILE KHI ẤN */
+        .group:active {
+            transform: translateY(-6px) !important;
+        }
+        .group:active img {
+            filter: grayscale(0) brightness(1) !important;
+            opacity: 1 !important;
         }
 
         .marquee-track {
@@ -63,6 +72,7 @@
             gap: 30px;
         }
 
+        /* GIỮ NGUYÊN BỐ CỤC HÀNG NGANG CHO CẢ PC VÀ MOBILE */
         .bottom-avatar-header-block {
             display: flex;
             align-items: center;
@@ -73,24 +83,31 @@
         .bottom-avatar {
             width: 150px;
             height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 8px solid #ffffff;
+            display: block;
             flex-shrink: 0;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28), 0 4px 12px rgba(0, 0, 0, 0.18);
+            border-radius: 50%;
+            overflow: hidden;
+            object-fit: cover;
+            object-position: center center;
+            background: #fff;
+            border: 6px solid #fff; /* Giữ khung trắng dày dặn */
+            box-shadow:
+                0 12px 36px rgba(0,0,0,.28),
+                0 4px 12px rgba(0,0,0,.18);
         }
+        
         .bottom-avatar-text-group {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            gap: 6px;
+            gap: 8px;
         }
         
         .bottom-avatar-name {
             font-family: 'SF Pro Rounded Black', sans-serif;
             font-weight: 900;
-            font-size: 64px;
+            font-size: 72px;
             color: #000000;
             margin: 0;
             letter-spacing: -1px;
@@ -101,12 +118,12 @@
         
         .bottom-avatar-subtext {
             font-family: 'SF Pro Rounded Black', sans-serif;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
-            color: #000000;
+            color: #aaaaaa; /* Đồng bộ màu xám nhạt tinh tế */
             margin: 0;
             letter-spacing: 0.5px;
-            opacity: 0.7;
+            line-height: 1;
         }
 
         /* KHUNG THƯ CỐ ĐỊNH THEO TỶ LỆ CỦA BANNER PHÍA TRÊN */
@@ -166,32 +183,53 @@
             transform: translateY(-16px); 
         }
 
-        /* ĐỒNG BỘ CHO MOBILE - TOÀN KHỐI KHỚP NHAU */
+        /* ĐỒNG BỘ HIỂN THỊ HÀNG NGANG TRÊN MOBILE */
         @media (max-width: 768px) {
             .bottom-avatar-container {
-                flex-direction: column !important;
-                align-items: center !important;
-                gap: 20px !important;
                 width: 100% !important;
                 padding-left: 16px !important;
                 padding-right: 16px !important;
                 box-sizing: border-box !important;
+                gap: 20px !important;
+            }
+
+            /* Đảm bảo khối tiêu đề luôn xếp ngang, thu nhỏ khoảng cách một chút */
+            .bottom-avatar-header-block {
+                flex-direction: row !important; 
+                align-items: center !important;
+                justify-content: flex-start !important;
+                text-align: left !important;
+                gap: 16px !important;
+            }
+
+            .bottom-avatar-text-group {
+                align-items: flex-start !important;
+                text-align: left !important;
+                gap: 4px !important;
             }
             
+            /* Thu nhỏ nhẹ kích thước avatar trên mobile để vừa vặn chiều ngang */
             .bottom-avatar {
-                width: 100px !important;
-                height: 100px !important;
-                border: 5px solid #ffffff !important;
+                width: 90px !important;
+                height: 90px !important;
+                border: 4px solid #ffffff !important;
             }
+            
+            /* Điều chỉnh lại font chữ để không bị vỡ dòng trên màn hình dọc */
             .bottom-avatar-name {
-                font-size: 48px !important; 
+                font-size: 42px !important; 
+                line-height: 1 !important;
             }
             .bottom-avatar-name img {
-                height: 26px !important;
+                height: 22px !important;
                 margin-left: 6px !important;
+                transform: translateY(2px) !important;
+            }
+
+            .bottom-avatar-subtext {
+                font-size: 13px !important; 
             }
             
-            /* MOBILE KHỚP RỘNG KHUÔN 100% NHƯ BANNER TRÊN */
             .bottom-letter-box {
                 width: 100% !important;
                 padding: 20px 20px 65px 20px !important; 
@@ -223,7 +261,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen w-screen flex flex-col justify-between items-center m-0 overflow-x-hidden pt-8 pb-8 bg-white">
+<body ontouchstart="" class="min-h-screen w-screen flex flex-col justify-between items-center m-0 overflow-x-hidden pt-8 pb-8 bg-white">
 
     <div class="w-full flex justify-center">
         <div class="w-[98vw] max-w-[1850px] bg-gradient-to-r from-[#eda500] to-[#ffb200] font-['SF_Pro_Rounded_Black'] font-black text-xl tracking-wide py-4.5 uppercase overflow-hidden whitespace-nowrap rounded-2xl shadow-lg select-none">
@@ -240,9 +278,9 @@
         <section id="profile-section" class="section-container">
             <div class="bottom-avatar-container">
                 <div class="bottom-avatar-header-block">
-                    <img src="https://i.postimg.cc/WbXQrmxR/image.png" class="bottom-avatar" alt="Avatar" draggable="false">
+                    <img src="https://i.postimg.cc/0NjDkPGL/5b08ffc4cecf978a56374a612aba09d2.png" class="bottom-avatar" alt="Avatar" draggable="false">
                     <div class="bottom-avatar-text-group">
-                        <h3 class="bottom-avatar-name">sappy<img src="https://i.postimg.cc/BbVvTQQ3/Verified-Tiktok-Emoji-Copy-and-Paste.png" alt="TikTok Verified" style="height: 32px; width: auto; margin-left: 10px; flex-shrink: 0; transform: translateY(3px);" draggable="false"></h3>
+                        <h3 class="bottom-avatar-name">sappy<img src="https://i.postimg.cc/BbVvTQQ3/Verified-Tiktok-Emoji-Copy-and-Paste.png" alt="TikTok Verified" style="height: 32px; width: auto; margin-left: 12px; flex-shrink: 0; transform: translateY(4px);" draggable="false"></h3>
                         <p class="bottom-avatar-subtext">sapp1e_.gfx</p>
                     </div>
                 </div>
@@ -262,6 +300,14 @@
                     
                     <h5 class="bottom-letter-signature">Sappy</h5>
                 </div>
+
+                <div class="w-[76%] mx-auto mt-14 flex flex-col items-center gap-3">
+                    <div class="w-full h-[10px] bg-[#ffb200] rounded-full"></div>
+                    <div class="w-full text-center text-black font-['SF_Pro_Rounded_Black'] font-black tracking-[0em] text-5xl md:text-7xl uppercase select-none leading-none pt-1">
+                        SHOWCASE
+                    </div>
+                </div>
+
             </div>
         </section>
     </div>
@@ -295,12 +341,10 @@
             marqueeTrack.innerHTML += marquee.outerHTML;
         }
 
-        // CHẶN MENU CHUỘT PHẢI (PC) VÀ MENU NHẤN GIỮ (MOBILE) ĐỂ CHỐNG DOWNLOAD ẢNH
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
-        // CHẶN PHÍM TẮT SOI CODE CƠ BẢN (F12, CTRL+U, CTRL+S, CTRL+SHIFT+I)
         document.addEventListener('keydown', function(e) {
             if (
                 e.key === 'F12' || 
