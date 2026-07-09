@@ -26,19 +26,18 @@
         body { 
             background-color: #ffffff; 
             font-family: 'Plus Jakarta Sans', sans-serif;
-            /* Chống bôi đen text toàn trang */
+            /* Chống bôi đen lựa chọn văn bản toàn trang */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
         }
 
-        /* KHÓA ẢNH: Đã bỏ pointer-events để điện thoại nhận diện lượt bấm và chạy hiệu ứng */
+        /* KHÓA ẢNH: Chống kéo thả ảnh, chống nhấn giữ hiện menu tải xuống trên Mobile */
         img {
             -webkit-user-drag: none;
             user-drag: none;
-            /* Chặn menu tải xuống khi nhấn giữ trên một số trình duyệt di động */
-            -webkit-touch-callout: none; 
+            -webkit-touch-callout: none;
         }
 
         .marquee-track {
@@ -296,12 +295,12 @@
             marqueeTrack.innerHTML += marquee.outerHTML;
         }
 
-        // CHẶN CHUỘT PHẢI TRÊN MÁY TÍNH VÀ NHẤN GIỮ TRÊN ĐIỆN THOẠI (Chống lưu ảnh)
+        // CHẶN MENU CHUỘT PHẢI (PC) VÀ MENU NHẤN GIỮ (MOBILE) ĐỂ CHỐNG DOWNLOAD ẢNH
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
-        // CHẶN CÁC PHÍM TẮT COPPY / SOI MÃ NGUỒN CƠ BẢN
+        // CHẶN PHÍM TẮT SOI CODE CƠ BẢN (F12, CTRL+U, CTRL+S, CTRL+SHIFT+I)
         document.addEventListener('keydown', function(e) {
             if (
                 e.key === 'F12' || 
