@@ -26,21 +26,18 @@
         body { 
             background-color: #ffffff; 
             font-family: 'Plus Jakarta Sans', sans-serif;
-            /* Chống bôi đen text toàn trang */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
         }
 
-        /* KHÓA ẢNH BẢO MẬT */
         img {
             -webkit-user-drag: none;
             user-drag: none;
-            -webkit-touch-callout: none; /* Chặn menu lưu ảnh khi nhấn giữ trên iOS/Android */
+            -webkit-touch-callout: none;
         }
 
-        /* FIX HOÀN TOÀN TRẠNG THÁI HIỆN MÀU / NẨY LÊN TRÊN MOBILE KHI ẤN */
         .group:active {
             transform: translateY(-6px) !important;
         }
@@ -72,7 +69,6 @@
             gap: 30px;
         }
 
-        /* GIỮ NGUYÊN BỐ CỤC HÀNG NGANG CHO CẢ PC VÀ MOBILE */
         .bottom-avatar-header-block {
             display: flex;
             align-items: center;
@@ -90,7 +86,7 @@
             object-fit: cover;
             object-position: center center;
             background: #fff;
-            border: 6px solid #fff; /* Giữ khung trắng dày dặn */
+            border: 6px solid #fff;
             box-shadow:
                 0 12px 36px rgba(0,0,0,.28),
                 0 4px 12px rgba(0,0,0,.18);
@@ -120,13 +116,12 @@
             font-family: 'SF Pro Rounded Black', sans-serif;
             font-size: 16px;
             font-weight: 500;
-            color: #aaaaaa; /* Đồng bộ màu xám nhạt tinh tế */
+            color: #aaaaaa;
             margin: 0;
             letter-spacing: 0.5px;
             line-height: 1;
         }
 
-        /* KHUNG THƯ CỐ ĐỊNH THEO TỶ LỆ CỦA BANNER PHÍA TRÊN */
         .bottom-letter-box {
             background-color: #fcfcfc;
             border-radius: 24px;
@@ -183,7 +178,6 @@
             transform: translateY(-16px); 
         }
 
-        /* ĐỒNG BỘ HIỂN THỊ HÀNG NGANG TRÊN MOBILE */
         @media (max-width: 768px) {
             .bottom-avatar-container {
                 width: 100% !important;
@@ -193,7 +187,6 @@
                 gap: 20px !important;
             }
 
-            /* Đảm bảo khối tiêu đề luôn xếp ngang, thu nhỏ khoảng cách một chút */
             .bottom-avatar-header-block {
                 flex-direction: row !important; 
                 align-items: center !important;
@@ -208,14 +201,12 @@
                 gap: 4px !important;
             }
             
-            /* Thu nhỏ nhẹ kích thước avatar trên mobile để vừa vặn chiều ngang */
             .bottom-avatar {
                 width: 90px !important;
                 height: 90px !important;
                 border: 4px solid #ffffff !important;
             }
             
-            /* Điều chỉnh lại font chữ để không bị vỡ dòng trên màn hình dọc */
             .bottom-avatar-name {
                 font-size: 42px !important; 
                 line-height: 1 !important;
@@ -277,6 +268,29 @@
     <div class="my-auto py-6" style="width: 97%; max-width: 1600px; box-sizing: border-box;">
         <section id="profile-section" class="section-container">
             <div class="bottom-avatar-container">
+                
+                <div class="w-[76%] mx-auto mt-14 flex flex-col items-center gap-3">
+                    <div class="w-full flex justify-center items-center">
+                        <span class="text-center text-black font-['SF_Pro_Rounded_Black'] font-black tracking-[0em] text-5xl md:text-7xl uppercase select-none leading-none pt-1">
+                            SHOWCASE
+                        </span>
+                    </div>
+                </div>
+
+                <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mt-4 px-2 md:px-0">
+                    <div class="w-full aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] bg-gray-100 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onclick="openLightbox('https://i.postimg.cc/9F3fzCVz/King-TEC.png')">
+                        <img src="https://i.postimg.cc/9F3fzCVz/King-TEC.png" alt="King TEC" class="w-full h-full object-cover" draggable="false">
+                    </div>
+                    <div class="w-full aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] bg-gray-100 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onclick="openLightbox('https://i.postimg.cc/V6pkqcC7/practise.png')">
+                        <img src="https://i.postimg.cc/V6pkqcC7/practise.png" alt="Practise" class="w-full h-full object-cover" draggable="false">
+                    </div>
+                    <div class="w-full aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] bg-gray-100 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onclick="openLightbox('https://i.postimg.cc/x138W7WB/pepe.png')">
+                        <img src="https://i.postimg.cc/x138W7WB/pepe.png" alt="Pepe" class="w-full h-full object-cover" draggable="false">
+                    </div>
+                </div>
+
+                <div class="w-full h-[10px] bg-[#ffb200] rounded-full my-10"></div>
+
                 <div class="bottom-avatar-header-block">
                     <img src="https://i.postimg.cc/0NjDkPGL/5b08ffc4cecf978a56374a612aba09d2.png" class="bottom-avatar" alt="Avatar" draggable="false">
                     <div class="bottom-avatar-text-group">
@@ -299,28 +313,6 @@
                     </div>
                     
                     <h5 class="bottom-letter-signature">Sappy</h5>
-                </div>
-
-                <!-- KHỐI CHỨA VẠCH NGĂN CÁCH VÀ CHỮ SHOWCASE ĐÃ CĂN GIỮA -->
-                <div class="w-[76%] mx-auto mt-14 flex flex-col items-center gap-3">
-                    <div class="w-full h-[10px] bg-[#ffb200] rounded-full"></div>
-                    <div class="w-full flex justify-center items-center">
-                        <span class="text-center text-black font-['SF_Pro_Rounded_Black'] font-black tracking-[0em] text-5xl md:text-7xl uppercase select-none leading-none pt-1">
-                            SHOWCASE
-                        </span>
-                    </div>
-                </div>
-
-                <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mt-4 px-2 md:px-0">
-                    <div class="w-full aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] bg-gray-100 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onclick="openLightbox('https://i.postimg.cc/9F3fzCVz/King-TEC.png')">
-                        <img src="https://i.postimg.cc/9F3fzCVz/King-TEC.png" alt="King TEC" class="w-full h-full object-cover" draggable="false">
-                    </div>
-                    <div class="w-full aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] bg-gray-100 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onclick="openLightbox('https://i.postimg.cc/V6pkqcC7/practise.png')">
-                        <img src="https://i.postimg.cc/V6pkqcC7/practise.png" alt="Practise" class="w-full h-full object-cover" draggable="false">
-                    </div>
-                    <div class="w-full aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.25)] bg-gray-100 cursor-pointer transition-transform duration-200 hover:scale-[1.02]" onclick="openLightbox('https://i.postimg.cc/x138W7WB/pepe.png')">
-                        <img src="https://i.postimg.cc/x138W7WB/pepe.png" alt="Pepe" class="w-full h-full object-cover" draggable="false">
-                    </div>
                 </div>
 
             </div>
@@ -366,7 +358,6 @@
             marqueeTrack.innerHTML += marquee.outerHTML;
         }
 
-        // JS điều khiển Lightbox
         const overlay = document.getElementById('lightboxOverlay');
         const lightboxImg = document.getElementById('lightboxImage');
 
@@ -384,12 +375,10 @@
             setTimeout(() => { lightboxImg.src = ''; }, 300); 
         }
 
-        // Chặn menu chuột phải bảo mật
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
-        // Chặn phím tắt F12 / Inspect và phím tắt đóng ảnh bằng Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeLightbox();
