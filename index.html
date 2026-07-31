@@ -14,6 +14,54 @@
             font-weight: 900;
             font-style: normal;
         }
+
+        /* CSS cho Welcome Screen */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999999;
+            transition: opacity 0.5s ease;
+        }
+        #welcome-text {
+            font-family: 'SF Pro Rounded Black', system-ui, -apple-system, sans-serif;
+            font-size: 110px;
+            font-weight: 900;
+            color: #000000;
+            text-transform: uppercase;
+            white-space: nowrap;
+            animation: slideInLeft 1.5s ease-out forwards;
+            margin: 0;
+            text-align: center;
+        }
+        #welcome-subtext {
+            font-family: 'SF Pro Rounded Black', system-ui, -apple-system, sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            margin-top: 15px;
+            animation: slideUp 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+            text-align: center;
+        }
+
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideUp {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
         
         @font-face {
             font-family: 'VNI 08 Springtime2 BoldOblique';
@@ -368,6 +416,23 @@
         }
 
         @media (max-width: 768px) {
+            #welcome-screen {
+                padding: 0 20px !important;
+                box-sizing: border-box !important;
+                text-align: center !important;
+            }
+            #welcome-text { 
+                font-size: 28px !important; 
+                white-space: normal !important; 
+                line-height: 1.3 !important;
+            }
+            #welcome-subtext { 
+                font-size: 13px !important; 
+                white-space: normal !important;
+                text-align: center !important;
+                line-height: 1.4 !important;
+            }
+
             .showcase-grid {
                 grid-template-columns: 1fr !important;
                 gap: 20px !important;
@@ -452,6 +517,12 @@
     </style>
 </head>
 <body ontouchstart="" class="min-h-screen w-screen flex flex-col justify-between items-center m-0 overflow-x-hidden pt-8 pb-8 bg-white">
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen">
+        <h1 id="welcome-text"><span style="color: #ffb200;">SAPPY</span> - VIETNAMESE MINECRAFT DESIGNER</h1>
+        <h2 id="welcome-subtext">- PROFESSIONAL MINECRAFT THUMBNAILS -</h2>
+    </div>
 
     <div class="w-full flex justify-center">
         <div class="w-[98vw] max-w-[1850px] bg-gradient-to-r from-[#eda500] to-[#ffb200] font-['SF_Pro_Rounded_Black'] font-black text-xl tracking-wide py-4.5 uppercase overflow-hidden whitespace-nowrap rounded-2xl shadow-lg select-none">
@@ -548,6 +619,20 @@
     </footer>
 
     <script>
+        /* Logic ẩn Welcome Screen sau khi load trang */
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const welcome = document.getElementById('welcome-screen');
+                if (welcome) {
+                    welcome.style.opacity = '0';
+                    setTimeout(() => {
+                        welcome.style.display = 'none';
+                        window.scrollTo({ top: 0, behavior: 'instant' });
+                    }, 500);
+                }
+            }, 2000); 
+        });
+
         const marquee = document.getElementById("marquee");
         const marqueeTrack = document.getElementById("marqueeTrack");
 
